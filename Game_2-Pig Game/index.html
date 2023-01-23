@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Pig Game</title>
+    </head>
+    <body>
+        <main>
+            <section class="player player--0 player--active">
+                <h2 class="name" id="name--0">Player 1</h2>
+                <p class="score" id="score--0">0</p>
+                <div class="current">
+                    <p class="current-label">Current</p>
+                    <p class="current-score" id="current--0">0</p>
+                </div>
+            </section>
+            <section class="player player--1">
+                <h2 class="name" id="name--1">Player 2</h2>
+                <p class="score" id="score--1">0</p>
+                <div class="current">
+                    <p class="current-label">Current</p>
+                    <p class="current-score" id="current--1">0</p>
+                </div>
+            </section>
+            <img src="./media/dice-2.png" alt="dice" class="dice" />
+            <button class="btn btn--new">🔁 New Game</button>
+            <button class="btn btn--roll">🎲 Roll Dice</button>
+            <button class="btn btn--hold">🤞 Hold</button>
+            <button class="btn btn--info">📜 Rules</button>
+            <button class="btn btn--setTarget">🎯 Target</button>
+            <div class="modal hidden">
+                <button class="close-modal">&times;</button>
+                <h1>📜 Rules</h1>
+                <p>
+                    It is a simple dice rolling game, where first to score 20
+                    will win the game. <br />
+                    1. Players can either choose to roll or hold the number.
+                    <br />
+                    2. If the dice is at 1 then other player will get the chance
+                    to roll the dice. <br />
+                    3. The score will add up over time and fastest to score 20
+                    wins.
+                    <!-- 3. Reset the score // TODO: -->
+                </p>
+            </div>
+            <div class="overlay hidden"></div>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
