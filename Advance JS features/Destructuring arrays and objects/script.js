@@ -6,7 +6,7 @@ const flights =
 
 // Data needed for first part of the section
 const restaurant = {
-    name: "Classico Italiano",
+    restaurantName: "Classico Italiano",
     location: "Via Angelo Tavanti 23, Firenze, Italy",
     categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
     starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
@@ -26,12 +26,26 @@ const restaurant = {
             close: 24,
         },
     },
+    order: function (starterIndex, mainIndex) {
+        return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+    },
+    orderDelivery: function ({
+        time = "18:00",
+        address = "location",
+        mainIndex = 1,
+        starterIndex = 2,
+    }) {
+        console.log(
+            `Order Received!! at ${time} from ${address}. Starter: ${this.starterMenu[starterIndex]}; Main Menu: ${this.mainMenu[mainIndex]}`
+        );
+    },
 };
 
-const arr = [1, 2, 3, 4];
-const a = arr[0];
-const b = arr[1];
-const c = arr[2];
+// * -------------------------- Destructuring arrays. ------------------------
+let arr = [1, 2, 3, 4];
+let a = arr[0];
+let b = arr[1];
+let c = arr[2];
 
 console.log(a, b, c);
 
@@ -54,5 +68,83 @@ item_2 = temp;
 */
 
 // With destructuring
-[item_1, item_3] = [item_3, item_1];  // Like Python
+[item_1, item_3] = [item_3, item_1]; // Like Python
 console.log(item_1, item_3);
+
+let orders = restaurant.order(2, 0);
+console.log(orders); // Returning as an array
+
+let [starter, mainCourse] = restaurant.order(2, 0);
+console.log(starter, mainCourse); // Returning as individual elements.
+
+// Nested arrays
+const nested = [1, 2, [3, 4]];
+console.log(nested);
+
+[, , a] = nested;
+console.log(a); // Returns the whole array
+
+[, , [b, c]] = nested;
+console.log(b, c); // Returns elements.
+
+// Default values
+let [p, q, r] = [1, 2];
+console.log(p, q, r); // Here r is undefined
+// Output: 1 2 undefined
+
+// Lets use default values while destructuring.
+let [x = 1, y = 1, z = 1] = [, 20];
+console.log(x, y, z);
+// Output: 1 20 1
+
+//* ---------------------- Destructuring Objects -----------------------------------
+let { restaurantName, openingHours, categories } = restaurant;
+console.log(restaurantName, openingHours, categories);
+
+// Renaming variables:
+let {
+    restaurantName: place,
+    openingHours: hours,
+    categories: tags,
+} = restaurant;
+// It does not change the names
+
+console.log(place, hours, tags);
+console.log(restaurant);
+
+// Use of default values.
+let { menu, starterMenu: starters = [] } = restaurant;
+console.log(menu, starters); // menu will be returned as -> undefined
+
+({ menu = [], starterMenu: starters = [] } = restaurant);
+console.log(menu, starters);
+
+// Mutating variables
+a = 11;
+b = 22;
+console.log(a, b);
+
+let obj = { a: 33, b: 44, c: 55 };
+console.log("obj.a: " + obj.a + " | obj.b: " + obj.b);
+// {a, b} = obj; // Uncaught SyntaxError: Unexpected token '='
+({ a, b } = obj);
+console.log("<Swapped> a: " + a + " ; b: " + b);
+
+// Nested objects
+let {
+    fri: { open: opn = 10, close: cls = 22 },
+} = openingHours;
+console.log(opn, cls);
+
+restaurant.orderDelivery({
+    time: "20:00",
+    address: "South Roy Nagar, Kolkata",
+    mainIndex: 3,
+    starterIndex: 2,
+});
+
+restaurant.orderDelivery({
+    address: "South Roy Nagar, Kolkata",
+    mainIndex: 3,
+    starterIndex: 2,
+});
