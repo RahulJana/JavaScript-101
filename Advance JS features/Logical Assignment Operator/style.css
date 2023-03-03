@@ -1,0 +1,18 @@
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(to top right, rgb(0, 66, 110), rgb(219, 86, 219));
+}
+
+h1{
+    color: aliceblue;
+    font-family: sans-serif;
+    font-size: 50px;
+    text-align: center;
+}
+
+textarea {
+    width: 300px;
+    height: 100px;
+}
