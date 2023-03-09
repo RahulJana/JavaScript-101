@@ -191,3 +191,70 @@ for (const [key, value] of gameEvents) {
     const half = key <= 45 ? "FIRST" : "SECOND";
     console.log(`[${half} HALF] ${key}: ${value}`);
 }
+
+// Challenge 4
+// Task 1
+/*
+Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+Test data: 
+    underscore_case
+    first_name
+    Some_Variable
+    calculate_AGE
+    delayed_departure
+
+Expected Result:
+    SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+        underscoreCase ---✅
+        firstName --------✅✅
+        someVariable -----✅✅✅
+        calculateAge -----✅✅✅✅
+        delayedDeparture -✅✅✅✅✅
+*/
+const testData = [
+    "underscore_case",
+    "first_name",
+    "Some_Variable",
+    "calculate_AGE",
+    "delayed_departure",
+];
+// length 18
+/*
+replace(element[element.indexOf("_")+1], element[element.indexOf("_")+1].uc)
+
+*/
+
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+document.querySelector("button").addEventListener("click", function () {
+    const text = document.querySelector("textarea").value;
+    console.log(text);
+    const rows = text.split("\n");
+    for (let [i, element] of rows.entries()) {
+        element = element.toLowerCase().trim();
+        const noUndSc =
+            element
+                .replace(
+                    element[element.indexOf("_") + 1],
+                    element.charAt([element.indexOf("_") + 1]).toUpperCase()
+                )
+                .replace("_", "") + " ";
+        console.log(noUndSc.padEnd(18, "-") + "✅".repeat(i + 1));
+    }
+});
+
+const blackBox = function (testData) {
+    let repeatFactor = 1;
+    for (let element of testData) {
+        element = element.toLowerCase();
+        const noUndSc =
+            element
+                .replace(
+                    element[element.indexOf("_") + 1],
+                    element.charAt([element.indexOf("_") + 1]).toUpperCase()
+                )
+                .replace("_", "") + " ";
+        console.log(noUndSc.padEnd(18, "-") + "✅".repeat(repeatFactor));
+        repeatFactor += 1;
+    }
+};
