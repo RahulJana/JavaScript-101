@@ -192,6 +192,74 @@ for (const [key, value] of gameEvents) {
     console.log(`[${half} HALF] ${key}: ${value}`);
 }
 
+// Procedure: 1
+// Coding Challenge 4:
+document.body.append(document.createElement("textarea"));
+document.body.append(document.createElement("button"));
+
+/*
+Sample Data:
+underscore_case
+ first_name
+Some_Variable 
+  calculate_AGE
+delayed_departure
+
+Output:
+underscoreCase      ✅
+firstName           ✅✅
+someVariable        ✅✅✅
+calculateAge        ✅✅✅✅
+delayedDeparture    ✅✅✅✅✅
+
+*/
+
+document.querySelector("button").addEventListener("click", function () {
+    const text = document.querySelector("textarea").value;
+    const rows = text.split("\n");
+    console.log(rows);
+
+    // Camel casing
+    for (const row of rows) {
+        // console.log(row);
+        const no_underscore = row.toLowerCase().trim().split("_");
+        for (const i in no_underscore) {
+            if (i >= 1) {
+                no_underscore[i] = no_underscore[i].replace(
+                    no_underscore[i][0],
+                    no_underscore[i][0].toUpperCase()
+                );
+            }
+        }
+        console.log(no_underscore.join(""));
+    }
+});
+
+const text = `underscore_case
+ first_name
+Some_Variable 
+ calculate_AGE
+delayed_departure
+st1_str2_sTR-3`;
+// console.log(text);
+// const rows = text.split("\n");
+// console.log(rows);
+
+// for (const row of rows) {
+//     // console.log(row);
+//     const no_underscore = row.toLowerCase().trim().split("_");
+//     for (const i in no_underscore) {
+//         if (i >= 1) {
+//             no_underscore[i] = no_underscore[i].replace(
+//                 no_underscore[i][0],
+//                 no_underscore[i][0].toUpperCase()
+//             );
+//         }
+//     }
+//     console.log(no_underscore.join(""));
+// }
+// =======
+// Procedure: 2
 // Challenge 4
 // Task 1
 /*
@@ -258,3 +326,4 @@ const blackBox = function (testData) {
         repeatFactor += 1;
     }
 };
+
